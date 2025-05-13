@@ -47,7 +47,7 @@ rename_values_in_files() {
     local newValue="$3"
 
     find "$path" -type f | while read -r file; do
-        if [[ -s "$file" ]]; then
+        if [ -s "$file" ]; then
             sed -i "s/$oldValue/$newValue/g" "$file"
             echo "Reemplazado en $file"
         fi
@@ -58,7 +58,7 @@ rootPath="/home/intelequiaUser/Intelequia.Intelewriter.Deploy/"
 oldValue="demo.intelewriter.com"
 newValue="$DNS"
 
-if [[ -z "$newValue" ]]; then
+if [ -z "$newValue" ]; then
     echo "Por favor, proporciona un nuevo valor como argumento."
     echo "Uso: ./init.sh <nuevo_valor>"
     exit 1
