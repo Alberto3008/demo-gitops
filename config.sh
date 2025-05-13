@@ -55,12 +55,14 @@ rename_values_in_files "$rootPath" "$oldValue" "$newValue"
 
 sudo rm /home/intelequiaUser/Intelequia.Intelewriter.Deploy/nginx/certbot -rf
 
+sleep 5
+
 cd /home/intelequiaUser/Intelequia.Intelewriter.Deploy
 
 bash ./init-letsencrypt.sh
 
+sleep 5
+
 bash ./azureARCLogin.sh latest
 
-docker-compose up -d
-
-docker exec -i LibreChat /bin/sh -c "yes | npm run create-user $ClientEmail $NombreCliente $NombreCliente $ClientPassword"
+docker exec -it LibreChat /bin/sh -c "yes | npm run create-user $ClientEmail $NombreCliente $NombreCliente $ClientPassword"
