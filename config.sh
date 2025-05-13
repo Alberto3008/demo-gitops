@@ -72,7 +72,7 @@ cd /home/intelequiaUser/Intelequia.Intelewriter.Deploy
 
 bash ./init-letsencrypt.sh
 
-bash ./azureARCLogin.sh preview
+bash ./azureARCLogin.sh latest
 
 docker-compose up -d
 
