@@ -24,7 +24,9 @@ sed -i~ '/^AZURE_ASSISTANTS_API_KEY=/s/=.*/="'$AzureOpenAIKey'"/' /home/intelequ
 
 sed -i~ '/^RAG_AZURE_OPENAI_API_KEY=/s/=.*/="'$AzureOpenAIKey'"/' /home/intelequiaUser/Intelequia.Intelewriter.Deploy/.env
 
-sed -i~ '#^APPLICATIONINSIGHTS_CONNECTION_STRING=#s#=.*#="'$InsightString'"#' /home/intelequiaUser/Intelequia.Intelewriter.Deploy/.env
+InsightStringScape=$(echo "$InsightString" | sed "s/\//\\\\\//g")
+
+sed -i~ '/^APPLICATIONINSIGHTS_CONNECTION_STRING=/s/=.*/="'$InsightStringScape'"/' /home/intelequiaUser/Intelequia.Intelewriter.Deploy/.env
 
 
 #Nuevo DNS
@@ -53,16 +55,18 @@ fi
 
 rename_values_in_files "$rootPath" "$oldValue" "$newValue"
 
-sudo rm /home/intelequiaUser/Intelequia.Intelewriter.Deploy/nginx/certbot -rf
+sleep 15
 
-sleep 5
+sudo rm /home/intelequiaUser/Intelequia.Intelewriter.Deploy/nginx/certbot -rf
 
 cd /home/intelequiaUser/Intelequia.Intelewriter.Deploy
 
 bash ./init-letsencrypt.sh
 
-sleep 5
+sleep 15
 
 bash ./azureARCLogin.sh latest
+
+sleep 15
 
 docker exec -i LibreChat /bin/sh -c "yes | npm run create-user $ClientEmail $NombreCliente $NombreCliente $ClientPassword"
