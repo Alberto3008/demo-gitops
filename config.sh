@@ -70,3 +70,7 @@ bash ./azureARCLogin.sh latest
 sleep 15
 
 docker exec -i LibreChat /bin/sh -c "yes | npm run create-user $ClientEmail $NombreCliente $NombreCliente $ClientPassword"
+
+sleep 5
+
+bash ./azureARCLogin.sh $DNS $NombreCliente $ClientEmail $ClientPassword
