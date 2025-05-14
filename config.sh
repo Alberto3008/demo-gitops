@@ -59,6 +59,8 @@ sudo rm /home/intelequiaUser/Intelequia.Intelewriter.Deploy/nginx/certbot -rf
 
 cd /home/intelequiaUser/Intelequia.Intelewriter.Deploy
 
+sleep 10
+
 bash ./init-letsencrypt.sh
 
 sleep 10
