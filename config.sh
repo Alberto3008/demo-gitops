@@ -73,4 +73,4 @@ docker exec -i LibreChat /bin/sh -c "yes | npm run create-user $ClientEmail $Nom
 
 sleep 5
 
-bash ./azureARCLogin.sh $DNS $NombreCliente $ClientEmail $ClientPassword
+bash ./callAzureLogicAppReg.sh $DNS $NombreCliente $ClientEmail $ClientPassword
